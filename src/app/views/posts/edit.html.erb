@@ -2,13 +2,13 @@
 
 <h1>Editing post</h1>
 
-<%= form_with(model: @post_form, url: post_path(params[:id]), scope: :post, method: :put) do |form| %>
+<%= form_with(model: @post_form, url: post_path(@post_dto.id), scope: :post, method: :put) do |form| %>
   <%= render "form", post: @post_form, form: form %>
 <% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this post", post_path(params[:id]) %> |
+  <%= link_to "Show this post", post_path(@post_dto.id) %> |
   <%= link_to "Back to posts", posts_path %>
 </div>

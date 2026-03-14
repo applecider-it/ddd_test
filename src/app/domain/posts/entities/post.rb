@@ -10,13 +10,21 @@ class Posts::Entities::Post
     @updated_at = updated_at
   end
 
-  def set_title(vo)
-    raise "Invalid Title Object" unless vo.is_a?(Title)
-    @title = vo
+  def set_title(value)
+    @title = Title.new(value)
   end
 
-  def set_content(vo)
-    raise "Invalid Content Object" unless vo.is_a?(Content)
-    @content = vo
+  def set_content(value)
+    @content = Content.new(value)
+  end
+
+  def to_dto
+    Posts::Dto::PostDto.new(
+      id: @id,
+      title: @title.value,
+      content: @content.value,
+      created_at: created_at,
+      updated_at: updated_at,
+    )
   end
 end

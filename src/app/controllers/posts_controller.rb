@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
+  before_action :setup
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    repository = Posts::ActiveRecord::PostRepositoryImpl.new
-    @posts = repository.all
+    @posts = Posts::UseCases::AllPost.new(@post_repository).call
   end
 
   # GET /posts/1 or /posts/1.json
@@ -25,10 +25,12 @@ class PostsController < ApplicationController
     @post_form = Posts::PostForm.new(post_params)
 
     if @post_form.valid?
-      new_id = Posts::UseCases::CreatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
-        title: Posts::Entities::Post::Title.new(@post_form.title),
-        content: Posts::Entities::Post::Content.new(@post_form.content)
+      post_dto = Posts::Dto::PostDto.new(
+        id: nil,
+        title: @post_form.title,
+        content: @post_form.content,
       )
+      new_id = Posts::UseCases::CreatePost.new(@post_repository).call(post_dto)
       redirect_to post_path(new_id), notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -41,13 +43,11 @@ class PostsController < ApplicationController
     @post_form.assign_attributes(post_params)
 
     if @post_form.valid?
-      Posts::UseCases::UpdatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
-        id: @post.id,
-        title: Posts::Entities::Post::Title.new(@post_form.title),
-        content: Posts::Entities::Post::Content.new(@post_form.content)
-      )
+      @post_dto.title = @post_form.title
+      @post_dto.content = @post_form.content
+      Posts::UseCases::UpdatePost.new(@post_repository).call(@post_dto)
 
-      redirect_to post_path(@post.id), notice: "Post was successfully updated.", status: :see_other
+      redirect_to post_path(@post_dto.id), notice: "Post was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,21 +55,26 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    Posts::UseCases::DeletePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
-      id: @post.id,
+    Posts::UseCases::DeletePost.new(@post_repository).call(
+      id: @post_dto.id,
     )
 
     redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other
   end
 
   private
+    def setup
+      @post_repository = Posts::ActiveRecord::PostRepositoryImpl.new
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      repository = Posts::ActiveRecord::PostRepositoryImpl.new
-      @post = repository.find(params.expect(:id))
+      @post_dto = Posts::UseCases::FindPost.new(@post_repository).call(
+        id: params.expect(:id),
+      )
       @post_form = Posts::PostForm.new
-      @post_form.title = @post.title
-      @post_form.content = @post.content
+      @post_form.title = @post_dto.title
+      @post_form.content = @post_dto.content
     end
 
     # Only allow a list of trusted parameters through.

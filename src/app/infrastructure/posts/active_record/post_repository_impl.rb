@@ -25,8 +25,8 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::Repositories::PostReposit
   def build_entity(record)
     Posts::Entities::Post.new(
       id: record.id,
-      title: record.title,
-      content: record.content,
+      title: Posts::Entities::Post::Title.new(record.title),
+      content: Posts::Entities::Post::Content.new(record.content),
       created_at: record.created_at,
       updated_at: record.updated_at
     )

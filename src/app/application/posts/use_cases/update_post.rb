@@ -5,9 +5,8 @@ class Posts::UseCases::UpdatePost
 
   def call(id:, title:, content:)
     post = @repository.find(id)
-    post.title = title
-    post.content = content
-    raise "タイトルが無効です" unless post.valid_title?
+    post.set_title(title)
+    post.set_content(content)
 
     @repository.save(post)
   end

@@ -25,11 +25,11 @@ class PostsController < ApplicationController
     @post_form = Posts::PostForm.new(post_params)
 
     if @post_form.valid?
-      Posts::UseCases::CreatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
-        title: @post_form.title,
-        content: @post_form.content
+      new_id = Posts::UseCases::CreatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
+        title: Posts::Entities::Post::Title.new(@post_form.title),
+        content: Posts::Entities::Post::Content.new(@post_form.content)
       )
-      redirect_to posts_path, notice: "Post was successfully created."
+      redirect_to post_path(new_id), notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,8 +43,8 @@ class PostsController < ApplicationController
     if @post_form.valid?
       Posts::UseCases::UpdatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
         id: @post.id,
-        title: @post_form.title,
-        content: @post_form.content
+        title: Posts::Entities::Post::Title.new(@post_form.title),
+        content: Posts::Entities::Post::Content.new(@post_form.content)
       )
 
       redirect_to post_path(@post.id), notice: "Post was successfully updated.", status: :see_other

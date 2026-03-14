@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    repository = Posts::ActiveRecord::PostRepositoryImpl.new
+    @posts = repository.all
   end
 
   # GET /posts/1 or /posts/1.json
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post_form = Posts::PostForm.new
   end
 
   # GET /posts/1/edit
@@ -21,46 +22,54 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post_form = Posts::PostForm.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post_form.valid?
+      Posts::UseCases::CreatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
+        title: @post_form.title,
+        content: @post_form.content
+      )
+      redirect_to posts_path, notice: "Post was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post_form = Posts::PostForm.new
+    @post_form.assign_attributes(post_params)
+
+    if @post_form.valid?
+      Posts::UseCases::UpdatePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
+        id: @post.id,
+        title: @post_form.title,
+        content: @post_form.content
+      )
+
+      redirect_to post_path(@post.id), notice: "Post was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
+    Posts::UseCases::DeletePost.new(Posts::ActiveRecord::PostRepositoryImpl.new).call(
+      id: @post.id,
+    )
 
-    respond_to do |format|
-      format.html { redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
+    redirect_to posts_path, notice: "Post was successfully destroyed.", status: :see_other
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params.expect(:id))
+      repository = Posts::ActiveRecord::PostRepositoryImpl.new
+      @post = repository.find(params.expect(:id))
+      @post_form = Posts::PostForm.new
+      @post_form.title = @post.title
+      @post_form.content = @post.content
     end
 
     # Only allow a list of trusted parameters through.

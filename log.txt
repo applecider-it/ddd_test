@@ -1,3 +1,8 @@
 
 rails new myapp
 
+bin/rails db:create
+bin/rails db:migrate
+
+rails generate controller home index
+

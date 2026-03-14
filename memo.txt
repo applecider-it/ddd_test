@@ -9,3 +9,8 @@ port
 rails: 3000
 
 -----------------------------------
+
+rails server
+
+http://localhost:3000
+

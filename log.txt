@@ -6,3 +6,4 @@ bin/rails db:migrate
 
 rails generate controller home index
 
+rails generate scaffold Post title:string content:text

@@ -64,7 +64,7 @@ class PostsController < ApplicationController
 
   private
     def setup
-      @post_repository = Posts::ApplicationRepositories::PostRepository.new
+      @post_repository = Posts::Repositories::PostRepository.new
     end
 
     # Use callbacks to share common setup or constraints between actions.

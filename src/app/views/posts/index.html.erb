@@ -4,13 +4,17 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render "post", post: post %>
-    <p>
-      <%= link_to "Show this post", post_path(post.id) %>
-    </p>
-  <% end %>
+<div style="margin: 1rem 0;">
+  <%= link_to "New post", new_post_path %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<div>
+  <% @posts.each do |post| %>
+    <div style="border: 1px solid #aaa; padding: 1rem; margin: 1rem 0;">
+      <%= render "post", post: post %>
+      <div>
+        <%= link_to "Show this post", post_path(post.id) %>
+      </div>
+    </div>
+  <% end %>
+</div>

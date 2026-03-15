@@ -6,5 +6,7 @@
   <%= link_to "Edit this post", edit_post_path(@post_dto.id) %> |
   <%= link_to "Back to posts", posts_path %>
 
-  <%= button_to "Destroy this post", post_path(@post_dto.id), method: :delete %>
+  <div style="margin-top: 5rem;">
+    <%= button_to "Destroy this post", post_path(@post_dto.id), method: :delete %>
+  </div>
 </div>

@@ -22,11 +22,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div>
+  <body style="background: #ddd; margin: 0;">
+    <div style="padding: 1rem 3rem; margin: 0; background: #eee;">
       <%= link_to "Top", root_path %>
       <%= link_to "Post", posts_path %>
     </div>
-    <%= yield %>
+    <div style="max-width: 100rem; background: #fff; margin: 0 auto; padding: 1rem 1rem; max-width: 40rem;">
+      <%= yield %>
+    </div>
   </body>
 </html>

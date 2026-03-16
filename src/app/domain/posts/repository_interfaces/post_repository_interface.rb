@@ -1,5 +1,5 @@
-# インターフェース
-class Posts::Repositories::PostRepositoryInterface
+# Postリポジトリのインターフェース
+class Posts::RepositoryInterfaces::PostRepositoryInterface
   def find(id)
     raise NotImplementedError
   end

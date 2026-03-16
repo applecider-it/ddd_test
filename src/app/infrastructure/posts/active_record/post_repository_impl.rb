@@ -1,4 +1,4 @@
-class Posts::ActiveRecord::PostRepositoryImpl < Posts::Repositories::PostRepositoryInterface
+class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::PostRepositoryInterface
   def find(id)
     record = ::Post.find(id)
     build_entity(record)

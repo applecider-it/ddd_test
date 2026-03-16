@@ -1,4 +1,4 @@
-# Postドメインモデル
+# 投稿ドメインモデル
 class Posts::Entities::Post
   attr_reader :id, :title, :content, :created_at, :updated_at
 
@@ -10,14 +10,17 @@ class Posts::Entities::Post
     @updated_at = updated_at
   end
 
+  # タイトルをバリューオブジェクトにして設定
   def set_title(value)
     @title = Title.new(value)
   end
 
+  # 内容をバリューオブジェクトにして設定
   def set_content(value)
     @content = Content.new(value)
   end
 
+  # DTOに変換
   def to_dto
     Posts::Dto::PostDto.new(
       id: @id,

@@ -1,3 +1,4 @@
+# タイトルのバリューオブジェクト
 class Posts::Entities::Post::Title
   attr_reader :value
 

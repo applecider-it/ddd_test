@@ -1,3 +1,4 @@
+# 投稿データ転送用DTO
 class Posts::Dto::PostDto
   attr_accessor :id, :title, :content, :created_at, :updated_at
 

@@ -1,3 +1,4 @@
+# 投稿レポジトリのアクティブレコードによる実体
 class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::PostRepositoryInterface
   def find(id)
     record = ::Post.find(id)
@@ -26,6 +27,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
 
   private
 
+  # アクティブレコードモデルから、ドメインモデルを生成
   def build_entity(record)
     raise "Invalid Object" unless record.is_a?(::Post)
 

@@ -1,3 +1,4 @@
+# 内容のバリューオブジェクト
 class Posts::Entities::Post::Content
   attr_reader :value
 

@@ -23,6 +23,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
     raise "Invalid Object" unless post.is_a?(Posts::Entities::Post)
 
     ::Post.find(post.id).destroy
+    nil
   end
 
   private

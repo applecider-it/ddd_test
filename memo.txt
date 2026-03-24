@@ -1,6 +1,6 @@
 
 
-cd /home/owner/workspace/tmp/ddd_test/src
+cd ~/workspace/github/ddd-test/src
 
 -----------------------------------
 

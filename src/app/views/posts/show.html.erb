@@ -2,6 +2,11 @@
 
 <%= render "post", post: @post_dto %>
 
+<div style="margin: 2rem 0; background: #ddd; padding: 2rem;">
+  <strong>Content HTML:</strong>
+  <%= @post_dto.content_html.html_safe %>
+</div>
+
 <div>
   <%= link_to "Edit this post", edit_post_path(@post_dto.id) %> |
   <%= link_to "Back to posts", posts_path %>

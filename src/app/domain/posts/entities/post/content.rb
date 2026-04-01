@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 # 内容のバリューオブジェクト
 class Posts::Entities::Post::Content
   attr_reader :value
@@ -14,5 +16,14 @@ class Posts::Entities::Post::Content
 
   def to_s
     value
+  end
+
+  # 内容をmarkdown変換したHTML
+  def html
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+
+    html = markdown.render(value)
+
+    html
   end
 end

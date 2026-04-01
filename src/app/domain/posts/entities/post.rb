@@ -28,6 +28,7 @@ class Posts::Entities::Post
       content: @content.value,
       created_at: created_at,
       updated_at: updated_at,
+      content_html: @content.html,
     )
   end
 end

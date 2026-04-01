@@ -2,6 +2,11 @@
 
 <%= render "article", article: @article %>
 
+<div style="margin: 2rem 0; background: #ddd; padding: 2rem;">
+  <strong>Content HTML:</strong>
+  <%= @article.content_html.html_safe %>
+</div>
+
 <div>
   <%= link_to "Edit this article", edit_article_path(@article) %> |
   <%= link_to "Back to articles", articles_path %>

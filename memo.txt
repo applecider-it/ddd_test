@@ -14,3 +14,15 @@ rails server
 
 http://localhost:3000
 
+
+-----------------------------------
+
+セットアップ
+
+bundle install
+
+bin/rails db:create
+bin/rails db:migrate
+
+
+

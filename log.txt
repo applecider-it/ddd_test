@@ -9,3 +9,6 @@ rails generate controller home index
 rails generate scaffold Post title:string content:text
 
 rails generate scaffold Article title:string content:text
+
+bundle install
+

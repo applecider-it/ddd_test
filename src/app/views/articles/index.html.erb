@@ -8,12 +8,12 @@
   <%= link_to "New article", new_article_path %>
 </div>
 
-<div id="articles">
+<div>
   <% @articles.each do |article| %>
     <div style="border: 1px solid #aaa; padding: 1rem; margin: 1rem 0;">
-      <%= render article %>
+      <%= render "article", article: article %>
       <div>
-        <%= link_to "Show this article", article %>
+        <%= link_to "Show this article", article_path(article) %>
       </div>
     </div>
   <% end %>

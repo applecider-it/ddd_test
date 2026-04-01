@@ -2,11 +2,13 @@
 
 <h1>Editing article</h1>
 
-<%= render "form", article: @article %>
+<%= form_with(model: @article, url: article_path(@article.id), scope: :article, method: :put) do |form| %>
+  <%= render "form", article: @article, form: form %>
+<% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this article", @article %> |
+  <%= link_to "Show this article", article_path(@article) %> |
   <%= link_to "Back to articles", articles_path %>
 </div>

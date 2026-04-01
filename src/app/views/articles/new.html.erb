@@ -2,7 +2,9 @@
 
 <h1>New article</h1>
 
-<%= render "form", article: @article %>
+<%= form_with(model: @article, url: articles_path, scope: :article) do |form| %>
+  <%= render "form", article: @article, form: form %>
+<% end %>
 
 <br>
 

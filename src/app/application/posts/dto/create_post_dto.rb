@@ -1,7 +1,7 @@
 # 投稿データ作成  転送用DTO
 class Posts::Dto::CreatePostDto
   attr_reader :title,
-                :content
+              :content
 
   def initialize(
     title:,

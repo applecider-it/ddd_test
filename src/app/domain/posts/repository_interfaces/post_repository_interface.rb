@@ -1,5 +1,12 @@
 # Postリポジトリのインターフェース
 class Posts::RepositoryInterfaces::PostRepositoryInterface
+  # 投稿一覧用データ取得
+  # 
+  # @return [Posts::Entities::Post]
+  def all
+    raise NotImplementedError
+  end
+
   # IDからデータ取得
   # 
   # @param int id
@@ -24,13 +31,6 @@ class Posts::RepositoryInterfaces::PostRepositoryInterface
   # 
   # @return Posts::Entities::Post
   def update(post)
-    raise NotImplementedError
-  end
-
-  # 投稿一覧用データ取得
-  # 
-  # @return [Posts::Entities::Post]
-  def all
     raise NotImplementedError
   end
 

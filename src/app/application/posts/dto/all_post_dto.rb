@@ -1,10 +1,10 @@
 # 投稿データ一覧  転送用DTO
 class Posts::Dto::AllPostDto
   attr_reader :id,
-                :title,
-                :content,
-                :created_at,
-                :updated_at
+              :title,
+              :content,
+              :created_at,
+              :updated_at
 
   def initialize(
     id:,

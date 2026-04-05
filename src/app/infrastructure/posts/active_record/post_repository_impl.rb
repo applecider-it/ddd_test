@@ -1,5 +1,9 @@
 # 投稿レポジトリのアクティブレコードによる実体
 class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::PostRepositoryInterface
+  def all
+    ::Post.order(id: :desc).map { |record| build_entity(record) }
+  end
+
   def find(id)
     record = ::Post.find(id)
     build_entity(record)
@@ -23,10 +27,6 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
     record.content = post.content.value
     record.save!
     build_entity(record)
-  end
-
-  def all
-    ::Post.order(id: :desc).map { |record| build_entity(record) }
   end
 
   def delete(post)

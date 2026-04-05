@@ -1,8 +1,8 @@
 # 投稿データ更新  転送用DTO
 class Posts::Dto::UpdatePostDto
   attr_reader :id,
-                :title,
-                :content
+              :title,
+              :content
 
   def initialize(
     id:,

@@ -1,11 +1,11 @@
 # 投稿データ取得  転送用DTO
 class Posts::Dto::FindPostDto
   attr_reader :id,
-                :title,
-                :content,
-                :created_at,
-                :updated_at,
-                :content_html
+              :title,
+              :content,
+              :created_at,
+              :updated_at,
+              :content_html
 
   def initialize(
     id:,

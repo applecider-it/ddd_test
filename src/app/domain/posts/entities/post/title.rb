@@ -12,7 +12,7 @@ class Posts::Entities::Post::Title
 
   # 同値比較
   def ==(other)
-    other.is_a?(Title) && value == other.value
+    other.is_a?(self.class) && value == other.value
   end
 
   def to_s

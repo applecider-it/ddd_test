@@ -13,7 +13,7 @@ class Posts::Entities::Post::Content
 
   # 同値比較
   def ==(other)
-    other.is_a?(Content) && value == other.value
+    other.is_a?(self.class) && value == other.value
   end
 
   def to_s

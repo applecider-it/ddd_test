@@ -19,16 +19,4 @@ class Posts::Entities::Post
   def set_content(value)
     @content = Content.new(value)
   end
-
-  # DTOに変換
-  def to_dto
-    Posts::Dto::PostDto.new(
-      id: @id,
-      title: @title.value,
-      content: @content.value,
-      created_at: created_at,
-      updated_at: updated_at,
-      content_html: @content.html,
-    )
-  end
 end

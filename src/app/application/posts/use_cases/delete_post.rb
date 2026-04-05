@@ -4,6 +4,8 @@ class Posts::UseCases::DeletePost
   end
 
   def call(id:)
+    raise "type error. #{id.class}" unless id.is_a?(Integer)
+
     post = @repository.find(id)
 
     @repository.delete(post)

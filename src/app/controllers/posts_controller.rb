@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post_dto = Posts::UseCases::FindPost.new(post_repository).call(
-        id: params.expect(:id),
+        id: Integer(params.expect(:id)),
       )
       @post_form = Posts::PostForm.new
       @post_form.title = @post_dto.title

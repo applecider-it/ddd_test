@@ -4,8 +4,10 @@ class Posts::UseCases::FindPost
   end
 
   def call(id:)
-      post = @repository.find(id)
-      to_dto(post)
+    raise "type error. #{id.class}" unless id.is_a?(Integer)
+
+    post = @repository.find(id)
+    to_dto(post)
   end
 
   # DTOに変換

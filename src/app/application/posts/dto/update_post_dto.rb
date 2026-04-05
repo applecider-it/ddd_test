@@ -9,6 +9,10 @@ class Posts::Dto::UpdatePostDto
     title:,
     content:
   )
+    raise "type error. #{id.class}" unless id.is_a?(Integer)
+    raise "type error. #{title.class}" unless title.is_a?(String)
+    raise "type error. #{content.class}" unless content.is_a?(String)
+
     @id = id
     @title = title
     @content = content

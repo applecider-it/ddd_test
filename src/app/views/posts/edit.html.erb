@@ -4,6 +4,10 @@
 
 <%= form_with(model: @post_form, url: post_path(@post_dto.id), scope: :post, method: :put) do |form| %>
   <%= render "form", post: @post_form, form: form %>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
 <% end %>
 
 <br>

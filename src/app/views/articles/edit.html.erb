@@ -4,6 +4,10 @@
 
 <%= form_with(model: @article, url: article_path(@article.id), scope: :article, method: :put) do |form| %>
   <%= render "form", article: @article, form: form %>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
 <% end %>
 
 <br>

@@ -13,11 +13,11 @@ class Posts::UseCases::FindPost
   # DTOに変換
   private def to_dto(post)
     Posts::Dto::FindPostDto.new(
-      id: post.id,
+      id: post.id.value,
       title: post.title.value,
       content: post.content.value,
-      created_at: post.created_at,
-      updated_at: post.updated_at,
+      created_at: post.created_at.value,
+      updated_at: post.updated_at.value,
       content_html: post.content.html,
     )
   end

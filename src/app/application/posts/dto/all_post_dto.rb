@@ -16,8 +16,8 @@ class Posts::Dto::AllPostDto
     raise "type error. #{id.class}" unless id.is_a?(Integer)
     raise "type error. #{title.class}" unless title.is_a?(String)
     raise "type error. #{content.class}" unless content.is_a?(String)
-    raise "type error. #{created_at.class}" unless created_at.is_a?(ActiveSupport::TimeWithZone)
-    raise "type error. #{updated_at.class}" unless updated_at.is_a?(ActiveSupport::TimeWithZone)
+    raise "type error. #{created_at.class}" unless created_at.is_a?(Time)
+    raise "type error. #{updated_at.class}" unless updated_at.is_a?(Time)
 
     @id = id
     @title = title

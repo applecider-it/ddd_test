@@ -5,7 +5,9 @@ class Posts::Entities::Post::Content
   attr_reader :value
 
   def initialize(value)
-    raise "内容は空にできません" if value.nil? || value.strip.empty?
+    raise "empty error." if value.nil? || value.strip.empty?
+    raise "type error. #{value.class}" unless value.is_a?(String)
+
     @value = value
   end
 

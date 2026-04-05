@@ -9,5 +9,7 @@ class Posts::UseCases::DeletePost
     post = @repository.find(id)
 
     @repository.delete(post)
+
+    nil
   end
 end

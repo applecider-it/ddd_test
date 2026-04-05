@@ -14,8 +14,8 @@ class Posts::UseCases::CreatePost
       updated_at: Time.now
     )
 
-    result = @repository.save(post)
+    result = @repository.create(post)
 
-    result.id
+    result.id.value
   end
 end

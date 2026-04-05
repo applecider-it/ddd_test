@@ -3,20 +3,26 @@ class Posts::Entities::Post
   attr_reader :id, :title, :content, :created_at, :updated_at
 
   def initialize(id:, title:, content:, created_at:, updated_at:)
-    @id = id
+    set_id(id)
     set_title(title)
     set_content(content)
-    @created_at = created_at
-    @updated_at = updated_at
+    set_created_at(created_at)
+    set_updated_at(updated_at)
   end
 
-  # タイトルをバリューオブジェクトにして設定
+  def set_id(value)
+    @id = Id.new(value)
+  end
   def set_title(value)
     @title = Title.new(value)
   end
-
-  # 内容をバリューオブジェクトにして設定
   def set_content(value)
     @content = Content.new(value)
+  end
+  def set_created_at(value)
+    @created_at = CreatedAt.new(value)
+  end
+  def set_updated_at(value)
+    @updated_at = UpdatedAt.new(value)
   end
 end

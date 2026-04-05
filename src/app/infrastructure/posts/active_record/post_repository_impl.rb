@@ -5,12 +5,22 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
     build_entity(record)
   end
 
-  def save(post)
+  def create(post)
     raise "type error. #{post.class}" unless post.is_a?(Posts::Entities::Post)
 
-    record = post.id ? ::Post.find(post.id) : ::Post.new
-    record.title = post.title
-    record.content = post.content
+    record = ::Post.new
+    record.title = post.title.value
+    record.content = post.content.value
+    record.save!
+    build_entity(record)
+  end
+
+  def update(post)
+    raise "type error. #{post.class}" unless post.is_a?(Posts::Entities::Post)
+
+    record = ::Post.find(post.id.value)
+    record.title = post.title.value
+    record.content = post.content.value
     record.save!
     build_entity(record)
   end
@@ -22,7 +32,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
   def delete(post)
     raise "type error. #{post.class}" unless post.is_a?(Posts::Entities::Post)
 
-    ::Post.find(post.id).destroy
+    ::Post.find(post.id.value).destroy
     nil
   end
 
@@ -36,8 +46,8 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
       id: record.id,
       title: record.title,
       content: record.content,
-      created_at: record.created_at,
-      updated_at: record.updated_at
+      created_at: record.created_at.to_time,
+      updated_at: record.updated_at.to_time
     )
   end
 end

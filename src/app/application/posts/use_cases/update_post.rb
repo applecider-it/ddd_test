@@ -10,6 +10,8 @@ class Posts::UseCases::UpdatePost
     post.set_title(update_post_dto.title)
     post.set_content(update_post_dto.content)
 
-    @repository.save(post)
+    @repository.update(post)
+
+    nil
   end
 end

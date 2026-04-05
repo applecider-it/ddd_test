@@ -7,6 +7,16 @@
   <%= @post_dto.content_html.html_safe %>
 </div>
 
+<p>
+  <strong>Create:</strong>
+  <%= @post_dto.created_at %>
+</p>
+
+<p>
+  <strong>Update:</strong>
+  <%= @post_dto.updated_at %>
+</p>
+
 <div>
   <%= link_to "Edit this post", edit_post_path(@post_dto.id) %> |
   <%= link_to "Back to posts", posts_path %>

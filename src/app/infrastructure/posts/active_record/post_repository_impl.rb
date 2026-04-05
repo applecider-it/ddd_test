@@ -26,7 +26,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
   end
 
   def all
-    ::Post.order(id: :desc).map { |r| build_entity(r) }
+    ::Post.order(id: :desc).map { |record| build_entity(record) }
   end
 
   def delete(post)

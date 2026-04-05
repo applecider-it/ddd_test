@@ -7,6 +7,7 @@ class Posts::UseCases::FindPost
     raise "type error. #{id.class}" unless id.is_a?(Integer)
 
     post = @repository.find(id)
+
     to_dto(post)
   end
 

@@ -6,7 +6,7 @@ class Posts::UseCases::AllPost
   def call
     posts = @repository.all
 
-    posts.map { |r| to_dto(r) }
+    posts.map { |post| to_dto(post) }
   end
 
   # DTOに変換

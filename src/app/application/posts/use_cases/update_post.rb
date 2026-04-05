@@ -4,7 +4,7 @@ class Posts::UseCases::UpdatePost
   end
 
   def call(update_post_dto)
-    raise "Invalid Object" unless update_post_dto.is_a?(Posts::Dto::UpdatePostDto)
+    raise "type error. #{update_post_dto.class}" unless update_post_dto.is_a?(Posts::Dto::UpdatePostDto)
 
     post = @repository.find(update_post_dto.id)
     post.set_title(update_post_dto.title)

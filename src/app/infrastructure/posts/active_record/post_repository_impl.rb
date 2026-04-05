@@ -6,7 +6,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
   end
 
   def save(post)
-    raise "Invalid Object" unless post.is_a?(Posts::Entities::Post)
+    raise "type error. #{post.class}" unless post.is_a?(Posts::Entities::Post)
 
     record = post.id ? ::Post.find(post.id) : ::Post.new
     record.title = post.title
@@ -20,7 +20,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
   end
 
   def delete(post)
-    raise "Invalid Object" unless post.is_a?(Posts::Entities::Post)
+    raise "type error. #{post.class}" unless post.is_a?(Posts::Entities::Post)
 
     ::Post.find(post.id).destroy
     nil
@@ -30,7 +30,7 @@ class Posts::ActiveRecord::PostRepositoryImpl < Posts::RepositoryInterfaces::Pos
 
   # アクティブレコードモデルから、ドメインモデルを生成
   def build_entity(record)
-    raise "Invalid Object" unless record.is_a?(::Post)
+    raise "type error. #{record.class}" unless record.is_a?(::Post)
 
     Posts::Entities::Post.new(
       id: record.id,

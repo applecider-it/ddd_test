@@ -4,7 +4,7 @@ class Posts::UseCases::CreatePost
   end
 
   def call(create_post_dto)
-    raise "Invalid Object" unless create_post_dto.is_a?(Posts::Dto::CreatePostDto)
+    raise "type error. #{create_post_dto.class}" unless create_post_dto.is_a?(Posts::Dto::CreatePostDto)
 
     post = Posts::Entities::Post.new(
       id: nil,

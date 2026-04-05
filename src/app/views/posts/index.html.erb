@@ -9,11 +9,11 @@
 </div>
 
 <div>
-  <% @posts.each do |post| %>
+  <% @posts_dto.each do |post_dto| %>
     <div style="border: 1px solid #aaa; padding: 1rem; margin: 1rem 0;">
-      <%= render "post", post: post %>
+      <%= render "post", post: post_dto %>
       <div>
-        <%= link_to "Show this post", post_path(post.id) %>
+        <%= link_to "Show this post", post_path(post_dto.id) %>
       </div>
     </div>
   <% end %>

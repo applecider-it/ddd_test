@@ -3,12 +3,12 @@ class Posts::UseCases::UpdatePost
     @repository = repository
   end
 
-  def call(post_dto)
-    raise "Invalid Object" unless post_dto.is_a?(Posts::Dto::PostDto)
+  def call(update_post_dto)
+    raise "Invalid Object" unless update_post_dto.is_a?(Posts::Dto::UpdatePostDto)
 
-    post = @repository.find(post_dto.id)
-    post.set_title(post_dto.title)
-    post.set_content(post_dto.content)
+    post = @repository.find(update_post_dto.id)
+    post.set_title(update_post_dto.title)
+    post.set_content(update_post_dto.content)
 
     @repository.save(post)
   end

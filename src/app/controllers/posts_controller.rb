@@ -24,12 +24,11 @@ class PostsController < ApplicationController
     @post_form = Posts::PostForm.new(post_params)
 
     if @post_form.valid?
-      post_dto = Posts::Dto::PostDto.new(
-        id: nil,
+      create_post_dto = Posts::Dto::CreatePostDto.new(
         title: @post_form.title,
         content: @post_form.content,
       )
-      new_id = Posts::UseCases::CreatePost.new(post_repository).call(post_dto)
+      new_id = Posts::UseCases::CreatePost.new(post_repository).call(create_post_dto)
       redirect_to post_path(new_id), notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -42,9 +41,12 @@ class PostsController < ApplicationController
     @post_form.assign_attributes(post_params)
 
     if @post_form.valid?
-      @post_dto.title = @post_form.title
-      @post_dto.content = @post_form.content
-      Posts::UseCases::UpdatePost.new(post_repository).call(@post_dto)
+      update_post_dto = Posts::Dto::UpdatePostDto.new(
+        id: @post_dto.id,
+        title: @post_form.title,
+        content: @post_form.content,
+      )
+      Posts::UseCases::UpdatePost.new(post_repository).call(update_post_dto)
 
       redirect_to post_path(@post_dto.id), notice: "Post was successfully updated.", status: :see_other
     else

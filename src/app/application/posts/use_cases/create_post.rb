@@ -3,13 +3,13 @@ class Posts::UseCases::CreatePost
     @repository = repository
   end
 
-  def call(post_dto)
-    raise "Invalid Object" unless post_dto.is_a?(Posts::Dto::PostDto)
+  def call(create_post_dto)
+    raise "Invalid Object" unless create_post_dto.is_a?(Posts::Dto::CreatePostDto)
 
     post = Posts::Entities::Post.new(
       id: nil,
-      title: post_dto.title,
-      content: post_dto.content,
+      title: create_post_dto.title,
+      content: create_post_dto.content,
       created_at: Time.now, 
       updated_at: Time.now
     )

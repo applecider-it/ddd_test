@@ -1,5 +1,14 @@
 # Railsモノリス
 
+## CRUD実装例
+
+`article`はMVCS。
+
+`post`はDDD、クリーンアーキテクチャ。
+
+DB構造や機能は同じ。
+
+
 ## MVCS設計
 
 ```

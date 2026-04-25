@@ -20,7 +20,7 @@ http://localhost:3000
 
 DDD
 
-cd ~/workspace/github/ddd-test/src
+cd ~/workspace/github/ddd-test/ddd
 
 rails server -p 3001
 

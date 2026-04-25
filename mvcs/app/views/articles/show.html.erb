@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "article", article: @article %>
+
+<div style="margin: 2rem 0; background: #ddd; padding: 2rem;">
+  <strong>Content HTML:</strong>
+  <%= @article.content_html.html_safe %>
+</div>
+
+<p>
+  <strong>Create:</strong>
+  <%= @article.created_at %>
+</p>
+
+<p>
+  <strong>Update:</strong>
+  <%= @article.updated_at %>
+</p>
+
+<div>
+  <%= link_to "Edit this article", edit_article_path(@article) %> |
+  <%= link_to "Back to articles", articles_path %>
+
+  <div style="margin-top: 5rem;">
+    <%= button_to "Destroy this article", article_path(@article), method: :delete %>
+  </div>
+</div>

@@ -1,6 +1,4 @@
-
-
-cd ~/workspace/github/ddd-test/src
+cd ~/workspace/github/ddd-test
 
 -----------------------------------
 
@@ -10,10 +8,23 @@ rails: 3000
 
 -----------------------------------
 
+MVCS
+
+cd ~/workspace/github/ddd-test/mvcs
+
 rails server
 
 http://localhost:3000
 
+-----------------------------------
+
+DDD
+
+cd ~/workspace/github/ddd-test/src
+
+rails server -p 3001
+
+http://localhost:3001
 
 -----------------------------------
 

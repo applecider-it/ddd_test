@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "post", post: @post %>
+
+<div style="margin: 2rem 0; background: #ddd; padding: 2rem;">
+  <strong>Content HTML:</strong>
+  <%= @post.content_html.html_safe %>
+</div>
+
+<p>
+  <strong>Create:</strong>
+  <%= @post.created_at %>
+</p>
+
+<p>
+  <strong>Update:</strong>
+  <%= @post.updated_at %>
+</p>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+
+  <div style="margin-top: 5rem;">
+    <%= button_to "Destroy this post", post_path(@post), method: :delete %>
+  </div>
+</div>

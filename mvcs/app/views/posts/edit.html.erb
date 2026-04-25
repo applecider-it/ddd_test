@@ -1,0 +1,18 @@
+<% content_for :title, "Editing post" %>
+
+<h1>Editing post</h1>
+
+<%= form_with(model: @post, url: post_path(@post.id), scope: :post, method: :put) do |form| %>
+  <%= render "form", post: @post, form: form %>
+
+  <div>
+    <%= form.submit "更新" %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this post", post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+</div>

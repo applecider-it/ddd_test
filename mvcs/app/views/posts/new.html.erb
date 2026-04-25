@@ -1,0 +1,17 @@
+<% content_for :title, "New post" %>
+
+<h1>New post</h1>
+
+<%= form_with(model: @post, url: posts_path, scope: :post) do |form| %>
+  <%= render "form", post: @post, form: form %>
+
+  <div>
+    <%= form.submit "作成" %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+</div>

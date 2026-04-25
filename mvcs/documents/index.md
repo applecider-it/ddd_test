@@ -10,7 +10,7 @@ app/
   models/
 
   services/
-    article_services/ <- カテゴリー区切り
+    post_services/ <- カテゴリー区切り
 ```
 
 ### 命名規則
